@@ -4,7 +4,7 @@ version: "3"
 services:
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest
+    image: "pihole/pihole:{{ pihole.version }}"
     ports:
       - "53:53/tcp"
       - "53:53/udp"
@@ -12,8 +12,8 @@ services:
       - "80:80/tcp"
       - "443:443/tcp"
     environment:
-      TZ: 'America/Chicago'
-      # WEBPASSWORD: 'set a secure password here or it will be random'
+      TZ: 'Asia/Kolkata'
+      WEBPASSWORD: "{{ pihole.admin_pass }}"
     # Volumes store your data between container upgrades
     volumes:
        - './etc-pihole/:/etc/pihole/'
